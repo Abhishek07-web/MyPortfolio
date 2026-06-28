@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abhishek Borade — Portfolio</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --bg:#0d0d0d;
+      --bg2:#141414;
+      --bg3:#1c1c1c;
+      --border:#2a2a2a;
+      --accent:#7c6dfa;
+      --accent2:#a89dfc;
+      --text:#f0f0f0;
+      --text2:#a0a0a0;
+      --text3:#555;
+    }
+
+    html{scroll-behavior:smooth}
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Segoe UI',system-ui,sans-serif;
+      line-height:1.6;
+    }
+
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;
+      background:rgba(13,13,13,0.85);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      z-index:100;
+      padding:0 2rem;
+      display:flex;align-items:center;justify-content:space-between;
+      height:56px;
+    }
+    .nav-logo{font-weight:700;font-size:1rem;color:var(--accent);letter-spacing:0.05em}
+    .nav-links{display:flex;gap:1.5rem}
+    .nav-links a{font-size:0.82rem;color:var(--text2);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--text)}
+
+    /* SECTIONS */
+    section{max-width:720px;margin:0 auto;padding:3.5rem 1.5rem 1rem;scroll-margin-top:64px}
+    section:first-of-type{padding-top:5rem}
+
+    .section-eyebrow{
+      font-size:0.68rem;font-weight:700;
+      color:var(--accent);text-transform:uppercase;
+      letter-spacing:0.12em;margin-bottom:0.6rem;
+    }
+
+    h2{font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:1rem}
+
+    /* HERO */
+    .hero{
+      min-height:75vh;display:flex;flex-direction:column;
+      justify-content:center;padding-top:4rem;
+    }
+    .hero-tag{
+      display:inline-block;font-size:0.72rem;font-weight:600;
+      color:var(--accent);background:rgba(124,109,250,0.12);
+      border:1px solid rgba(124,109,250,0.25);
+      border-radius:20px;padding:4px 14px;margin-bottom:1rem;
+    }
+    .hero h1{
+      font-size:clamp(2rem,6vw,3.2rem);font-weight:800;
+      line-height:1.15;margin-bottom:0.6rem;
+      background:linear-gradient(135deg,#fff 40%,#7c6dfa);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero-role{
+      font-size:1.05rem;color:var(--text2);margin-bottom:0.8rem;
+    }
+    .hero-desc{
+      font-size:0.95rem;color:var(--text2);max-width:480px;
+      line-height:1.75;margin-bottom:1.2rem;
+    }
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:10px 22px;border-radius:8px;
+      font-size:0.85rem;font-weight:600;text-decoration:none;transition:all 0.2s;
+    }
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:#6a5cf0}
+    .btn-outline{
+      border:1px solid var(--border);color:var(--text2);
+      background:transparent;
+    }
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+    .hero-stats{
+      display:flex;gap:2rem;margin-top:1.5rem;
+      border-top:1px solid var(--border);padding-top:1.5rem;
+      flex-wrap:wrap;
+    }
+    .stat-num{font-size:1.5rem;font-weight:800;color:var(--text)}
+    .stat-label{font-size:0.75rem;color:var(--text3);margin-top:2px}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .about-card{
+      background:var(--bg3);border:1px solid var(--border);
+      border-radius:12px;padding:1.25rem;
+    }
+    .about-card .label{font-size:0.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
+    .about-card .val{font-size:0.9rem;color:var(--text2)}
+    .about-text{
+      font-size:0.92rem;color:var(--text2);
+      line-height:1.8;margin-bottom:1rem;
+    }
+
+    /* SKILLS */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+    .skill-card{
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:12px;padding:1rem;
+    }
+    .sk-label{font-size:0.68rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
+    .sk-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .sk-tag{
+      font-size:0.73rem;color:var(--text2);
+      background:var(--bg3);border:1px solid var(--border);
+      border-radius:5px;padding:3px 8px;
+    }
+
+    /* PROJECTS */
+    .proj-card{
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:14px;padding:1.5rem;margin-bottom:14px;
+      transition:border-color 0.2s;
+    }
+    .proj-card:hover{border-color:#7c6dfa55}
+    .proj-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .proj-name{font-size:1.05rem;font-weight:700;color:var(--text)}
+    .proj-badge{
+      font-size:0.68rem;font-weight:600;
+      background:rgba(124,109,250,0.12);color:var(--accent2);
+      border:1px solid rgba(124,109,250,0.2);
+      border-radius:6px;padding:2px 8px;white-space:nowrap;
+    }
+    .proj-links{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
+    .proj-link{
+      font-size:0.76rem;color:var(--text2);text-decoration:none;
+      border:1px solid var(--border);border-radius:6px;padding:4px 10px;
+      transition:all 0.2s;
+    }
+    .proj-link:hover{border-color:var(--accent);color:var(--accent)}
+    .proj-desc{font-size:0.85rem;color:var(--text2);line-height:1.7;margin-bottom:12px}
+    .proj-stack{display:flex;flex-wrap:wrap;gap:6px}
+    .stack-tag{
+      font-size:0.7rem;color:var(--text3);
+      background:var(--bg3);border:1px solid var(--border);
+      border-radius:4px;padding:2px 7px;
+    }
+
+    /* EDUCATION */
+    .edu-card{
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:12px;
+      display:flex;gap:1rem;align-items:flex-start;
+    }
+    .edu-dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--accent);flex-shrink:0;margin-top:6px;
+    }
+    .edu-degree{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:3px}
+    .edu-school{font-size:0.85rem;color:var(--text2);margin-bottom:3px}
+    .edu-meta{font-size:0.78rem;color:var(--text3)}
+
+    /* CERTS */
+    .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+    .cert-item{
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:10px;padding:0.9rem 1rem;
+      font-size:0.82rem;color:var(--text2);
+      display:flex;align-items:center;gap:10px;
+    }
+    .cert-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+    /* CONTACT */
+    .contact-card{
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:14px;padding:2rem;text-align:center;
+    }
+    .contact-card p{font-size:0.9rem;color:var(--text2);margin-bottom:1.5rem;line-height:1.7}
+    .contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .contact-link{
+      display:flex;align-items:center;gap:8px;
+      font-size:0.84rem;color:var(--text2);text-decoration:none;
+      border:1px solid var(--border);border-radius:8px;padding:8px 16px;
+      transition:all 0.2s;
+    }
+    .contact-link:hover{border-color:var(--accent);color:var(--accent)}
+
+    /* FOOTER */
+    footer{
+      text-align:center;font-size:0.75rem;color:var(--text3);
+      padding:2rem 1rem 3rem;border-top:1px solid var(--border);
+      max-width:720px;margin:0 auto;
+    }
+
+    @media(max-width:520px){
+      .about-grid{grid-template-columns:1fr}
+      .hero h1{font-size:2rem}
+      nav{padding:0 1rem}
+      .nav-links{gap:1rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AB.</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Open to Work · Fresher 2026</div>
+  <h1>Abhishek Borade</h1>
+  <div class="hero-role">Python Developer &amp; Data Analyst</div>
+  <p class="hero-desc">
+    CS graduate specializing in AI/ML. I build things that work —
+    from CNN-powered disease detection to clean web tools.
+    Based in Nashik, open to relocating anywhere in India.
+  </p>
+  <div class="hero-cta">
+    <a href="mailto:abhishekborade907@gmail.com" class="btn btn-primary">Get in touch</a>
+    <a href="https://github.com/Abhishek07-web" target="_blank" class="btn btn-outline">GitHub</a>
+    <a href="https://linkedin.com/in/abhishekborade28" target="_blank" class="btn btn-outline">LinkedIn</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">2</div><div class="stat-label">Projects shipped</div></div>
+    <div><div class="stat-num">5</div><div class="stat-label">Certifications</div></div>
+    <div><div class="stat-num">90%+</div><div class="stat-label">ML model accuracy</div></div>
+    <div><div class="stat-num">7.31</div><div class="stat-label">CGPA</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">About</div>
+  <h2>Who I am</h2>
+  <p class="about-text">
+    I'm a fresh Computer Science graduate from Sandip University, Nashik (2026),
+    with a specialization in AI/ML and Virtual Reality. My strongest area is data analytics —
+    I enjoy working with pandas, numpy, and visualization libraries to find patterns in data.
+    I also build ML models and deploy them as Flask web apps.
+    I'm actively looking for Python Developer or Data Analytics roles where I can learn fast and add real value.
+  </p>
+  <div class="about-grid">
+    <div class="about-card"><div class="label">Location</div><div class="val">Nashik, Maharashtra</div></div>
+    <div class="about-card"><div class="label">Availability</div><div class="val">Immediate · Open to relocate</div></div>
+    <div class="about-card"><div class="label">Target roles</div><div class="val">Python Dev · Data Analyst</div></div>
+    <div class="about-card"><div class="label">Email</div><div class="val">abhishekborade907@gmail.com</div></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">Skills</div>
+  <h2>What I work with</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="sk-label">Languages</div>
+      <div class="sk-tags">
+        <span class="sk-tag">Python</span>
+        <span class="sk-tag">SQL</span>
+        <span class="sk-tag">R</span>
+        <span class="sk-tag">HTML</span>
+        <span class="sk-tag">CSS</span>
+        <span class="sk-tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-label">Data &amp; ML</div>
+      <div class="sk-tags">
+        <span class="sk-tag">Pandas</span>
+        <span class="sk-tag">NumPy</span>
+        <span class="sk-tag">TensorFlow</span>
+        <span class="sk-tag">Scikit-learn</span>
+        <span class="sk-tag">Matplotlib</span>
+        <span class="sk-tag">Seaborn</span>
+        <span class="sk-tag">Power BI</span>
+        <span class="sk-tag">Excel</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-label">Frameworks &amp; DB</div>
+      <div class="sk-tags">
+        <span class="sk-tag">Flask</span>
+        <span class="sk-tag">OpenCV</span>
+        <span class="sk-tag">Keras</span>
+        <span class="sk-tag">MySQL</span>
+        <span class="sk-tag">REST API</span>
+        <span class="sk-tag">MVC</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-label">Tools</div>
+      <div class="sk-tags">
+        <span class="sk-tag">Git</span>
+        <span class="sk-tag">GitHub</span>
+        <span class="sk-tag">Vercel</span>
+        <span class="sk-tag">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-label">Concepts</div>
+      <div class="sk-tags">
+        <span class="sk-tag">CNN</span>
+        <span class="sk-tag">Transfer Learning</span>
+        <span class="sk-tag">EDA</span>
+        <span class="sk-tag">OOP</span>
+        <span class="sk-tag">Data Structures</span>
+        <span class="sk-tag">SDLC</span>
+        <span class="sk-tag">Agile</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Projects</div>
+  <h2>What I've built</h2>
+
+  <div class="proj-card">
+    <div class="proj-head">
+      <div>
+        <div class="proj-name">Crop Disease Prediction System</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+        <span class="proj-badge">AI / ML</span>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/Abhishek07-web/CropDiseasePrediction" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+    <p class="proj-desc">
+      CNN-based plant disease detection app using MobileNetV2 transfer learning.
+      Farmers upload a leaf photo and get an instant diagnosis across 7 disease classes.
+      Achieved 90–93% validation accuracy. Deployed via Flask.
+    </p>
+    <div class="proj-stack">
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">Flask</span>
+      <span class="stack-tag">TensorFlow</span>
+      <span class="stack-tag">Keras</span>
+      <span class="stack-tag">MobileNetV2</span>
+      <span class="stack-tag">OpenCV</span>
+      <span class="stack-tag">NumPy</span>
+    </div>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-head">
+      <div>
+        <div class="proj-name">EMI Loan Calculator</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+        <span class="proj-badge">Web Tool</span>
+        <div class="proj-links">
+          <a class="proj-link" href="https://emi-calculator-chi-three.vercel.app" target="_blank">Live →</a>
+          <a class="proj-link" href="https://github.com/Abhishek07-web/emi-calculator" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+    <p class="proj-desc">
+      Built for Digital Heroes (real client) — a clean, free EMI calculator with interactive sliders
+      and a full month-by-month amortization breakdown across up to 360 EMIs.
+      No ads, no paywalls. Live on Vercel with zero downtime since launch.
+    </p>
+    <div class="proj-stack">
+      <span class="stack-tag">HTML5</span>
+      <span class="stack-tag">CSS3</span>
+      <span class="stack-tag">JavaScript</span>
+      <span class="stack-tag">Vercel</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-eyebrow">Education</div>
+  <h2>Background</h2>
+
+  <div class="edu-card">
+    <div class="edu-dot"></div>
+    <div>
+      <div class="edu-degree">B.Sc. Computer Science</div>
+      <div class="edu-school">Sandip University, Nashik</div>
+      <div class="edu-meta">Specialization: AI/ML &amp; Virtual Reality &nbsp;·&nbsp; CGPA: 7.31 &nbsp;·&nbsp; 2023 – 2026</div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="section-eyebrow" style="margin-bottom:1rem">Certifications</div>
+    <div class="cert-grid">
+      <div class="cert-item"><div class="cert-dot"></div>TCS iON Career Edge</div>
+      <div class="cert-item"><div class="cert-dot"></div>Deloitte Data Analytics · Forage</div>
+      <div class="cert-item"><div class="cert-dot"></div>TATA Data Analytics · Forage</div>
+      <div class="cert-item"><div class="cert-dot"></div>NPTEL AI · IIT Guwahati</div>
+      <div class="cert-item"><div class="cert-dot"></div>AWS Solutions Arch · Forage</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Contact</div>
+  <h2>Get in touch</h2>
+  <div class="contact-card">
+    <p>
+      I'm actively looking for Python Developer and Data Analytics roles.<br>
+      Open to relocating anywhere in India. Feel free to reach out.
+    </p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:abhishekborade907@gmail.com">✉️ Email</a>
+      <a class="contact-link" href="https://linkedin.com/in/abhishekborade28" target="_blank">💼 LinkedIn</a>
+      <a class="contact-link" href="https://github.com/Abhishek07-web" target="_blank">🐙 GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Abhishek Borade · abhishekborade907@gmail.com · Nashik, India
+</footer>
+
+</body>
+</html>
